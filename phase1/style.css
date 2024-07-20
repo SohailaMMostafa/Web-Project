@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+.container {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.head {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    padding: 15px;
+}
+
+.fa.fa-home {
+    font-size: 40px;
+    color: white;
+    margin-right: 5px
+}
+
+.fa.fa-home:hover {
+    color: #333;
+    cursor: pointer;
+}
+
+.main-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-navigation li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.main-navigation li:first-child {
+    margin-left: 10px;
+}
+
+.main-navigation a {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+
+}
+
+.main-navigation a:hover {
+    color: #555;
+    text-decoration: wavy;
+}
+
+
+.container header {
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.container header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+.container form {
+    position: relative;
+    margin-top: 16px;
+    min-height: 490px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.container form .form {
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+.container form .photo {
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    font-size: 14px;
+    color: #2e2e2e;
+}
+
+.photo label:after {
+    content: " *";
+    color: red;
+}
+
+form.secActive .form.first {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+.container form .title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+}
+
+.container form .fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form .fields .input-field {
+    display: flex;
+    width: calc(100% / 2 - 15px);
+    flex-direction: column;
+    margin: 5px 0;
+}
+
+
+.input-field label {
+    font-size: 14px;
+    color: #2e2e2e;
+}
+
+.input-field label:after {
+    content: " *";
+    color: red;
+}
+
+.input-field input,
+select {
+    outline: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+
+.input-field input:focus,
+.input-field select:focus {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+    border-color: blue;
+}
+
+.input-field select,
+.input-field input[type="date"] {
+    color: #707070;
+}
+
+.input-field input[type="date"]:valid {
+    color: #333;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.date-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.input-field label {
+    margin-bottom: 5px;
+}
+
+.input-field input[type="date"] {
+    flex: 1;
+    margin-right: 8px;
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.popup-container.active {
+    opacity: 1;
+    pointer-events: auto;
+    transition: .4s ease;
+
+}
+
+.popup-box {
+    width: 70%;/* optional */
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    background: #f2f2f2;
+    transform: scale(0);
+
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow scrolling within the popup if content is long */
+    max-height: 80vh;
+}
+
+.popup-container.active .popup-box {
+    transform: scale(1);
+    transition: .4s ease;
+    transition-delay: .25s;
+}
+
+.popup-box h1 {
+    color: #333;
+    line-height: 1;
+}
+
+.popup-box p {
+    color: #333;
+    margin: 12px 0 20px;
+}
+
+.popup-box img {
+    width: 100%; /* Full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Space between images */
+}
+
+.popup-box .close-btn {
+    width: 100%;
+    height: 45px;
+    background-color: #54abec;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 18px;
+    color: #f2f2f2;
+    font-weight: 500;
+}
+
+.popup-box .close-btn:hover {
+    background-color: #2b96e7;
+}
+
+.container form button {
+    bottom: 150px;
+    right: 376px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 42px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #54abec;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+
+
+form button:hover {
+    background-color: #2b96e7;
+}
+
+#showDatePicker {
+    padding: 8px 16px;
+    max-width: 80px;
+}
+
+#showDatePicker:hover {
+    background-color: #2b96e7;
+}
+
+
+.container form .btnText {
+    width: 120px;
+    margin-top: 20px;
+}
+
+.txt {
+    margin-right: 15px;
+}
+
+.uil.uil-navigator {
+    position: absolute;
+    margin-left: 65px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    height: 5px;
+    /* Adjust the height to match your design */
+    margin-top: 1px;
+    /* Adjust the margin to align with your inputs */
+    /*visibility: hidden; !* Hide the message by default but reserve space *!*/
+}
+
+.has-error .error {
+    visibility: visible;
+    /* Show the error message when needed */
+}
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+@media (max-width: 750px) {
+    .container form {
+        overflow-y: scroll;
+    }
+
+    .container form::-webkit-scrollbar {
+        display: none;
+    }
+
+    form .fields .input-field {
+        width: calc(100% / 2 - 15px);
+    }
+}
+
+@media (max-width: 550px) {
+    form .fields .input-field {
+        width: 100%;
+    }
+}
+
+.already-taken-status {
+    font-size: 12px;
+    color: red;
+    margin-top: 4px;
+}
+
+.available-status {
+    font-size: 12px;
+    color: green;
+    margin-top: 4px;
+}
+
+.username-container {
+    position: relative;
+}
+
+.username-container .already-taken-status {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+}
+
+.username-container .available-status {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+}
